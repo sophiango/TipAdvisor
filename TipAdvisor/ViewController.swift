@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Foundation
 
 class ViewController: UIViewController {
 
@@ -14,17 +15,24 @@ class ViewController: UIViewController {
     @IBOutlet weak var totalLabel: UILabel!
     @IBOutlet weak var billField: UITextField!
     @IBOutlet weak var tipControl: UISegmentedControl!
+    @IBOutlet weak var tipCurrencyLabel: UILabel!
+    @IBOutlet weak var totalCurrencyLabel: UILabel!
+
+    let defaults = UserDefaults.standard
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
-        let defaults = UserDefaults.standard
         let tipDefaultSetting = defaults.integer(forKey: "tip_default_option")
         tipControl.selectedSegmentIndex = tipDefaultSetting
-            
+        if billField.text != nil {
+            calculateTip(self)
+        }
+        tipCurrencyLabel.text = defaults.string(forKey: "currency_option") ?? "$"
+        totalCurrencyLabel.text = defaults.string(forKey: "currency_option") ?? "$"
         super.viewWillAppear(animated)
     }
 
@@ -44,7 +52,13 @@ class ViewController: UIViewController {
         let total = bill + tip
         
         tipLabel.text = String(format: "$%.2f", tip)
-        totalLabel.text = String(format: "$%.2f", total)
+
+        var totalVal = total
+        let roundAmtSetting = defaults.bool(forKey: "round_amt_option")
+        if roundAmtSetting == true {
+            totalVal = round(total)
+        }
+        totalLabel.text = String(format: "$%.2f", totalVal)
     }
 
 }
