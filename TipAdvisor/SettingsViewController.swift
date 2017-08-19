@@ -15,9 +15,14 @@ class SettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     @IBOutlet weak var currencyPickerView: UIPickerView!
 
     let defaults = UserDefaults.standard
-    var defaultTipSetting : Int?
-    var roundAmtSetting : Bool?
-    var currencySetting : String?
+    var defaultTipSetting : Int!
+    var roundAmtSetting : Bool!
+    var currencySetting : String!
+
+    var TIP_OPTION_KEY = "tip_default_option"
+    var ROUND_OPTION_KEY = "round_amt_option"
+    var CURRENCY_OPTION_KEY = "currency_option"
+
     var currencyPickerData = [
         "$",
         "€",
@@ -34,24 +39,27 @@ class SettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        let defaultTipSetting = defaults.integer(forKey: "tip_default_option")
+        let defaultTipSetting = defaults.integer(forKey: TIP_OPTION_KEY)
         defaultTipControl.selectedSegmentIndex = defaultTipSetting
 
-        let roundAmtSetting = defaults.bool(forKey: "round_amt_option")
-        roundAmtSwitch.isOn = roundAmtSetting
+        let roundAmtSetting = defaults.bool(forKey: ROUND_OPTION_KEY)
+        roundAmtSwitch.setOn(roundAmtSetting, animated:true)
 
-        let selected = defaults.string(forKey: "currency_option") ?? ""
-        if let row = currencyPickerData.index(of: selected) {
-            currencyPickerView.selectRow(row, inComponent: 0, animated: false)
+        let selected = defaults.string(forKey: CURRENCY_OPTION_KEY) ?? ""
+        let row = currencyPickerData.index(of: selected)
+        if row != nil {
+            currencyPickerView.selectRow(row!, inComponent: 0, animated: false)
         }
         
         super.viewWillAppear(animated)
     }
 
     override func viewWillDisappear(_ animated: Bool) {
-        defaults.set(defaultTipSetting, forKey: "tip_default_option")
-        defaults.set(roundAmtSetting, forKey: "round_amt_option")
-        defaults.set(currencySetting, forKey: "currency_option")
+        defaults.set(defaultTipControl.selectedSegmentIndex, forKey: TIP_OPTION_KEY)
+        defaults.set(roundAmtSwitch.isOn, forKey: ROUND_OPTION_KEY)
+        if currencySetting != nil {
+            defaults.set(currencySetting, forKey: CURRENCY_OPTION_KEY)
+        }
 
         defaults.synchronize()
         super.viewWillDisappear(animated)
