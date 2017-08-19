@@ -23,7 +23,7 @@ The following **optional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-<img src="http://imgur.com/rSmtYHr" title='TipAdvisor Video Walkthrough' width='' alt='TipAdvisor Video Walkthrough' />
+<a href="http://imgur.com/rSmtYHr"><img src="http://i.imgur.com/rSmtYHr.gif" title="source: imgur.com" /></a>
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
