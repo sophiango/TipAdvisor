@@ -28,8 +28,7 @@ class SettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         "€",
         "¥",
         "£",
-        "元",
-        "Bitcoin"
+        "元"
     ]
 
     override func viewDidLoad() {
