@@ -49,15 +49,9 @@ class SettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     }
 
     override func viewWillDisappear(_ animated: Bool) {
-        if defaultTipSetting != nil {
-            defaults.set(defaultTipSetting, forKey: "tip_default_option")
-        }
-        if roundAmtSetting != nil {
-            defaults.set(roundAmtSetting, forKey: "round_amt_option")
-        }
-        if currencySetting != nil {
-            defaults.set(currencySetting, forKey: "currency_option")
-        }
+        defaults.set(defaultTipSetting, forKey: "tip_default_option")
+        defaults.set(roundAmtSetting, forKey: "round_amt_option")
+        defaults.set(currencySetting, forKey: "currency_option")
 
         defaults.synchronize()
         super.viewWillDisappear(animated)

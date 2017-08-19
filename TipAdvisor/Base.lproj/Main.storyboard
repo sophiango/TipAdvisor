@@ -142,7 +142,7 @@
                                     <segment title="25%"/>
                                 </segments>
                                 <connections>
-                                    <action selector="selectTipDefaultOption:" destination="HMk-8x-Ljg" eventType="valueChanged" id="hrf-qX-aYZ"/>
+                                    <action selector="selectdefaultTipOption:" destination="HMk-8x-Ljg" eventType="valueChanged" id="qNA-gr-faD"/>
                                 </connections>
                             </segmentedControl>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Default tip option" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1vN-Qe-SFa">
